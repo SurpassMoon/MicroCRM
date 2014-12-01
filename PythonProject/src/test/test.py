@@ -21,7 +21,7 @@ class login():
         rs = db.select('user')
         for r in rs:
             if  r.username == username and r.password == password :
-                   return render.success(r.name)
+                return render.success(r.name)
             return render.error() 
         
         
