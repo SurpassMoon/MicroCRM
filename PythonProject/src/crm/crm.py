@@ -6,7 +6,6 @@ import model
 # -*- coding: UTF-8 -*-
 urls = ('/', 'index',
         '/login', 'login')
-db = web.database(dbn='sqlite', db='crm.db')
 render = web.template.render('../templates/')
 
 class index():
@@ -19,11 +18,9 @@ class login():
         postdata=web.input()  
         username=web.net.websafe(postdata.username)  
         password=web.net.websafe(postdata.password) 
-        rs = db.select('user')
-        for r in rs:
-            if  r.username == username and r.password == password :
-                return render.clients(model.get_clients())
-            return render.error() 
+        if model.login(username, password) :
+            return render.clients(model.get_clients())
+        return render.error() 
         
         
 if __name__ == "__main__":
