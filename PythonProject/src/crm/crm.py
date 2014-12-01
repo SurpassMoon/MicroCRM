@@ -1,11 +1,12 @@
 
 import web
+import model
 
 
 # -*- coding: UTF-8 -*-
 urls = ('/', 'index',
         '/login', 'login')
-db = web.database(dbn='sqlite', db='test.db')
+db = web.database(dbn='sqlite', db='crm.db')
 render = web.template.render('../templates/')
 
 class index():
@@ -21,7 +22,7 @@ class login():
         rs = db.select('user')
         for r in rs:
             if  r.username == username and r.password == password :
-                return render.success(r.name)
+                return render.clients(model.get_clients())
             return render.error() 
         
         
