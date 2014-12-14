@@ -6,7 +6,7 @@ import model
 # -*- coding: UTF-8 -*-
 urls = ('/', 'index',
         '/login', 'login')
-render = web.template.render('../templates/')
+render = web.template.render('templates/')
 
 class index():
     def GET(self):
